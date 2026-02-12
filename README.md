@@ -69,28 +69,34 @@ The project contains two Snake DQN variants:
 
 ## Quick Start
 
-1. Create and activate a virtual environment:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Beba-ai-ml/snake-dqn-multi-env.git
+   cd snake-dqn-multi-env
+   ```
+
+2. Create and activate a virtual environment:
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    ```
 
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Train with multi-env (recommended, 8 parallel envs by default):
+4. Train with multi-env (recommended, 8 parallel envs by default):
    ```bash
    python -m snake_dqn_8_multi.train --episodes 1000 --num-envs 8 --save-every 500 --session-id 1
    ```
 
-4. Train single-env with rendering:
+5. Train single-env with rendering:
    ```bash
    python -m snake_dqn_88.train --episodes 100 --render-every 1 --fps 8
    ```
 
-5. Resume training from a checkpoint:
+6. Resume training from a checkpoint:
    ```bash
    python -m snake_dqn_8_multi.train --episodes 1000 --session-id 13
    ```
