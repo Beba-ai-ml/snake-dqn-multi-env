@@ -1,5 +1,7 @@
 # Snake DQN Multi-Env
 
+![Snake DQN agent gameplay](gameplay.gif)
+
 A reinforcement learning project that trains a DQN agent to play Snake on an 8x8 (or larger) grid, using a CNN-based **Dueling Double DQN** with **NoisyNet** exploration and optional multi-environment (vectorized) parallel training.
 
 ## Overview
