@@ -11,13 +11,13 @@ from snake_dqn_8_multi.game import SnakeGame
 from snake_dqn_8_multi.model import DQN
 
 # --- Config ---
-GRID_SIZE = 16
-MODEL_PATH = "pretrained/session_13_best.pth"
+GRID_SIZE = 8
+MODEL_PATH = "checkpoints_8_multi/session_4.pth"
 OUTPUT_PATH = "gameplay.gif"
 MAX_EPISODES = 50  # try up to this many episodes to find a good one
-CELL_SIZE = 20  # pixels per cell
-FPS = 8
-FRAME_DURATION = 1000 // FPS  # ms per frame
+CELL_SIZE = 30  # pixels per cell
+FPS = 64
+FRAME_DURATION = 1000 // FPS  # ms per frame (~16ms)
 
 # Colors
 BG_COLOR = (30, 30, 30)
@@ -69,8 +69,12 @@ def main():
 
     # Load model
     model = DQN(output_size=4, grid_size=GRID_SIZE).to(device)
-    state_dict = torch.load(MODEL_PATH, map_location=device)
-    # The pretrained file is a raw state_dict (OrderedDict)
+    checkpoint = torch.load(MODEL_PATH, map_location=device, weights_only=False)
+    # Checkpoint may be a raw state_dict or a dict with 'model' key
+    if isinstance(checkpoint, dict) and "model" in checkpoint:
+        state_dict = checkpoint["model"]
+    else:
+        state_dict = checkpoint
     model.load_state_dict(state_dict)
     model.eval()
     print("Model loaded successfully.")

@@ -117,17 +117,27 @@ The project contains two Snake DQN variants:
 | `--session-id` | 1 | Session number for checkpoint naming |
 | `--load-from` | None | Path to a .pth file to load weights from |
 
-## Pretrained Model
+## Pretrained Models
 
-A pretrained best model is included in `pretrained/`:
+Two pretrained models are included:
 
+### 8x8 Grid (gameplay GIF)
+- **File:** `checkpoints_8_multi/session_4.pth`
+- **Grid:** 8x8
+- **Win rate:** ~60% (fills the entire board, score 61)
+- **Training:** 58,100 episodes with 8 parallel environments
+
+### 16x16 Grid
 - **File:** `pretrained/session_13_best.pth` (~20 MB)
 - **Grid:** 16x16
 - **Mean score (100 episodes):** 25.37
 - **Training:** 22,066 episodes with 32 parallel environments
 
-To use the pretrained model:
+To use a pretrained model:
 ```bash
+# 8x8
+python -m snake_dqn_8_multi.train --load-from checkpoints_8_multi/session_4.pth --grid-size 8 --episodes 100
+# 16x16
 python -m snake_dqn_8_multi.train --load-from pretrained/session_13_best.pth --grid-size 16 --episodes 100
 ```
 
